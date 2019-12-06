@@ -59,7 +59,15 @@ export const pointSqrtCount = [
   1
 ];
 
-export const circleOpacity = ["interpolate", ["linear"], ["zoom"], 6, 0, 15, 1];
+export const circleOpacity = [
+  "interpolate",
+  ["linear"],
+  ["zoom"],
+  6,
+  0.5,
+  15,
+  1
+];
 export const circleRadius = ["interpolate", ["linear"], ["zoom"], 10, 2, 22, 4];
 export const circlesLayout = { "circle-sort-key": ["get", "sqrt_point_count"] };
 export const circlesBlur = ["interpolate", ["linear"], ["zoom"], 0, 1, 15, 0.5];
