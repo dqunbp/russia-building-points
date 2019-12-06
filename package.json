@@ -8,7 +8,7 @@
     "start": "parcel index.html --open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build index.html --public-url ./ --no-source-maps",
-    "prepare": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "author": "dqunbp",
