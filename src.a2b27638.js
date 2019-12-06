@@ -597,9 +597,10 @@ function loadCircles(before) {
     layout: _constants.circlesLayout,
     paint: {
       "circle-radius": _constants.circleRadius,
-      "circle-color": palette[0],
-      "circle-stroke-width": 0.4,
-      "circle-stroke-color": palette[4],
+      "circle-color": "yellow",
+      //palette[0],
+      "circle-stroke-width": 1,
+      "circle-stroke-color": palette[0],
       "circle-opacity": 0,
       "circle-stroke-opacity": 0
     }
@@ -731,7 +732,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63002" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54567" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
