@@ -335,7 +335,7 @@ var HEATMAP_SHADES = [0.2, 0.4, 0.6, 0.8, 1];
 exports.HEATMAP_SHADES = HEATMAP_SHADES;
 var pointSqrtCount = ["case", ["has", "sqrt_point_count"], ["get", "sqrt_point_count"], 1];
 exports.pointSqrtCount = pointSqrtCount;
-var circleOpacity = ["interpolate", ["linear"], ["zoom"], 6, 0, 15, 1];
+var circleOpacity = ["interpolate", ["linear"], ["zoom"], 6, 0.5, 15, 1];
 exports.circleOpacity = circleOpacity;
 var circleRadius = ["interpolate", ["linear"], ["zoom"], 10, 2, 22, 4];
 exports.circleRadius = circleRadius;
@@ -732,7 +732,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54567" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56829" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
