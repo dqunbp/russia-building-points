@@ -169,9 +169,9 @@ function loadCircles(
       layout: circlesLayout,
       paint: {
         "circle-radius": circleRadius,
-        "circle-color": palette[0],
-        "circle-stroke-width": 0.4,
-        "circle-stroke-color": palette[4],
+        "circle-color": "yellow", //palette[0],
+        "circle-stroke-width": 1,
+        "circle-stroke-color": palette[0],
         "circle-opacity": 0,
         "circle-stroke-opacity": 0
       }
