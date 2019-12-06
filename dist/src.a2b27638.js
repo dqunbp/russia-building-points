@@ -366,7 +366,28 @@ var heatmapRadius = ["interpolate", ["linear"], ["zoom"], 0, 2, h, 20];
 exports.heatmapRadius = heatmapRadius;
 var heatmapOpacity = ["interpolate", ["linear"], ["zoom"], 7, 1, h, 0];
 exports.heatmapOpacity = heatmapOpacity;
-},{"./utils":"src/utils.js"}],"src/index.js":[function(require,module,exports) {
+},{"./utils":"src/utils.js"}],"src/resize-observer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setWindowHeight = setWindowHeight;
+
+function setWindowHeight() {
+  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+  var vh = window.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
+
+  document.documentElement.style.setProperty("--vh", "".concat(vh, "px"));
+} // if (ResizeObserver) {
+//   const body = document.querySelector("body > div");
+//   const resizeObserver = new ResizeObserver(entries => {
+//     console.log(entries);
+//     // for (let entry of entries) if (entry.contentBoxSize) setWindowHeight();
+//   });
+//   resizeObserver.observe(body);
+// }
+},{}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 require("./styles.scss");
@@ -375,12 +396,15 @@ var _constants = require("./constants");
 
 var _utils = require("./utils");
 
+var _resizeObserver = require("./resize-observer");
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+(0, _resizeObserver.setWindowHeight)();
 var modal = document.getElementById("modal");
 
 var closeModal = function closeModal() {
@@ -396,7 +420,7 @@ document.getElementById("modal-bg").addEventListener("click", closeModal);
 document.getElementById("modal-close").addEventListener("click", closeModal);
 document.getElementById("about-large").addEventListener("click", openModal);
 document.getElementById("about-small").addEventListener("click", openModal);
-mapboxgl.accessToken = "pk.eyJ1IjoiZHF1bmJwIiwiYSI6ImNqd3VwYmlsNTAwbzUzeWxjcWZvbXR2NnoifQ.Nph-iRrSz0zjeoawkt8Cgw";
+mapboxgl.accessToken = "pk.eyJ1IjoiZHF1bmJwIiwiYSI6ImNrM3U5bGJhazBhZmUza29wNHljdmZ4cDMifQ.2X-FQcNV7_P4ajnk6EDrcg";
 var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/dark-v10",
@@ -638,8 +662,7 @@ map.on("load", function () {
       countButtons[l].classList.remove("active");
     }
 
-    unloadCurrent(); // setTimeout(unloadCurrent, 1300);
-
+    unloadCurrent();
     var palette = mapPaletes[id];
     var unloadCircles = loadCircles(firstSymbolId, "".concat(id, "-points"), "".concat(id, "-points"), palette);
     var unloadHeat = loadHeat(firstSymbolId, "".concat(id, "-heat"), "".concat(id, "-points"), palette);
@@ -660,7 +683,7 @@ map.on("load", function () {
     _loop(l);
   }
 });
-},{"./styles.scss":"src/styles.scss","./constants":"src/constants.js","./utils":"src/utils.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./styles.scss":"src/styles.scss","./constants":"src/constants.js","./utils":"src/utils.js","./resize-observer":"src/resize-observer.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -688,7 +711,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65414" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55003" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

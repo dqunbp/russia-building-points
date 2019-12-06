@@ -11,7 +11,10 @@ import {
   heatmapRadius,
   heatmapOpacity
 } from "./constants";
-import { throttle, debounce } from "./utils";
+import { throttle } from "./utils";
+import { setWindowHeight } from "./resize-observer";
+
+setWindowHeight();
 
 const modal = document.getElementById("modal");
 const closeModal = () => modal.classList.remove("is-active");
