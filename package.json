@@ -1,0 +1,26 @@
+{
+  "name": "russia-building-points",
+  "repository": "geoalert/russia-building-points",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.html --public-url ./ --no-source-maps",
+    "prepare": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "author": "dqunbp",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.1.1",
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.4",
+    "autoprefixer": "^9.7.3",
+    "bulma": "^0.8.0",
+    "parcel": "^1.12.4",
+    "sass": "^1.23.7"
+  }
+}
