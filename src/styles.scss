@@ -17,6 +17,9 @@ body {
 .col {
   &.sidebar {
     flex: none;
+    overflow: hidden;
+    max-height: 100vh;
+    transition: max-height 0.25s ease-in;
   }
   &.map {
     flex: 1;
@@ -26,6 +29,13 @@ body {
   &.ftr {
     flex: none;
     padding: 0.3rem;
+  }
+}
+
+.col.sidebar.collapsed {
+  @media screen and (max-width: 768px) {
+    max-height: 4rem;
+    transition: max-height 0.15s ease-out;
   }
 }
 
@@ -62,6 +72,12 @@ body {
   & > nav {
     margin-bottom: 10px;
     // cursor: pointer;
+  }
+  &.brand {
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+    }
   }
   &.counts {
     display: flex;

@@ -13,18 +13,17 @@ import {
 } from "./constants";
 import { throttle } from "./utils";
 import { setWindowHeight } from "./resize-observer";
+import { setupModal } from "./modal";
 
 setWindowHeight();
+setupModal();
 
-const modal = document.getElementById("modal");
-const closeModal = () => modal.classList.remove("is-active");
-const openModal = () => modal.classList.add("is-active");
-
-document.getElementsByClassName("modal-background").onclick = closeModal;
-document.getElementById("modal-bg").addEventListener("click", closeModal);
-document.getElementById("modal-close").addEventListener("click", closeModal);
-document.getElementById("about-large").addEventListener("click", openModal);
-document.getElementById("about-small").addEventListener("click", openModal);
+const sidebar = document.querySelector(".col.sidebar");
+document.getElementById("burger").addEventListener("click", function() {
+  if (sidebar.classList.contains("collapsed"))
+    sidebar.classList.remove("collapsed");
+  else sidebar.classList.add("collapsed");
+});
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZHF1bmJwIiwiYSI6ImNrM3U5bGJhazBhZmUza29wNHljdmZ4cDMifQ.2X-FQcNV7_P4ajnk6EDrcg";
@@ -193,6 +192,10 @@ const mapPaletes = {
 };
 
 map.on("load", function() {
+  map.addControl(
+    new mapboxgl.NavigationControl({ showCompass: false }),
+    "bottom-right"
+  );
   loadSources();
 
   // Find the index of the first symbol layer in the map style
