@@ -9,7 +9,8 @@ import {
   getHeatColors,
   heatmapIntensity,
   heatmapRadius,
-  heatmapOpacity
+  heatmapOpacity,
+  Tokens
 } from "./constants";
 import { throttle } from "./utils";
 import { setWindowHeight } from "./resize-observer";
@@ -18,6 +19,8 @@ import { setupModal } from "./modal";
 setWindowHeight();
 setupModal();
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
 const sidebar = document.querySelector(".col.sidebar");
 document.getElementById("burger").addEventListener("click", function() {
   if (sidebar.classList.contains("collapsed"))
@@ -25,8 +28,7 @@ document.getElementById("burger").addEventListener("click", function() {
   else sidebar.classList.add("collapsed");
 });
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZHF1bmJwIiwiYSI6ImNrM3U5bGJhazBhZmUza29wNHljdmZ4cDMifQ.2X-FQcNV7_P4ajnk6EDrcg";
+mapboxgl.accessToken = isDevelopment ? Tokens.development : Tokens.production;
 let map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/dark-v10",

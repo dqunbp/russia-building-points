@@ -99,3 +99,10 @@ export const heatmapIntensity = [
 
 export const heatmapRadius = ["interpolate", ["linear"], ["zoom"], 0, 2, h, 20];
 export const heatmapOpacity = ["interpolate", ["linear"], ["zoom"], 7, 1, h, 0];
+
+export const Tokens = {
+  development:
+    "pk.eyJ1IjoiZHF1bmJwIiwiYSI6ImNqd3VuaGZyeTAwYTEzeW1oeHo3NHh1cnMifQ.AzNgwn8crwuAXGPmasjlzA",
+  production:
+    "pk.eyJ1IjoiZHF1bmJwIiwiYSI6ImNrM3U5bGJhazBhZmUza29wNHljdmZ4cDMifQ.2X-FQcNV7_P4ajnk6EDrcg"
+};

@@ -42,3 +42,11 @@ export const throttle = (fn, wait) => {
     }
   };
 };
+
+export function removeLabels(map) {
+  map.style.stylesheet.layers.forEach(function(layer) {
+    if (layer.type === "symbol") {
+      map.removeLayer(layer.id);
+    }
+  });
+}
