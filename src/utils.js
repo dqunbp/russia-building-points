@@ -44,9 +44,25 @@ export const throttle = (fn, wait) => {
 };
 
 export function removeLabels(map) {
-  map.style.stylesheet.layers.forEach(function(layer) {
-    if (layer.type === "symbol") {
-      map.removeLayer(layer.id);
-    }
-  });
+  return map.style.stylesheet.layers.reduce(function(removed, layer) {
+    if (layer.type === "symbol") map.removeLayer(layer.id);
+    return [...removed, layer.id];
+  }, []);
+}
+
+export function createInteractionsSwitcher(map, interactions = "all") {
+  const allInteractions = [
+    "scrollZoom",
+    "boxZoom",
+    "dragRotate",
+    "dragPan",
+    "keyboard",
+    "doubleClickZoom",
+    "touchZoomRotate"
+  ];
+  const handlers = interactions === "all" ? allInteractions : interactions;
+  return function(enable) {
+    const operation = enable ? "enable" : "disable";
+    handlers.forEach(h => map[h][operation]());
+  };
 }
